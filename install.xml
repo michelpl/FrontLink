@@ -6,10 +6,10 @@
     <file path="admin/controller/common/column_left.php">
         <operation>
             <search>
-              <![CDATA[return $this->load->view('common/column_left', $data);]]>
+                <![CDATA[return $this->load->view('common/column_left', $data);]]>
             </search>
             <add position="before">
-                <![CDATA[$data['frontlinkUrl'] = $this->url->link('extension/payment/mundipagg', 'user_token=' . $this->session->data['user_token'], true);]]>
+                <![CDATA[$data['frontlinkUrl'] = $data['frontlinkUrl'] = HTTPS_CATALOG;]]>
             </add>
         </operation>
     </file>
