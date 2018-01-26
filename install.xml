@@ -9,7 +9,23 @@
                 <![CDATA[return $this->load->view('common/column_left', $data);]]>
             </search>
             <add position="before">
-                <![CDATA[$data['frontlinkUrl'] = $data['frontlinkUrl'] = HTTPS_CATALOG;]]>
+                <![CDATA[
+                    $data['stores'][] = [
+                        'name' => $this->config->get('config_name'),
+                        'href' => HTTP_CATALOG
+                    ];
+
+                    $this->load->model('setting/store');
+
+                    $results = $this->model_setting_store->getStores();
+
+                    foreach ($results as $result) {
+                        $data['stores'][] = [
+                            'name' => $result['name'],
+                            'href' => $result['url']
+                        ];
+                    }
+                ]]>
             </add>
         </operation>
     </file>
@@ -20,12 +36,13 @@
             </search>
             <add position="after">
                 <![CDATA[
-                    <li id="frontLink">
-                        <a href="{{ frontlinkUrl }}" target="_blank">
-                            <i class="fa fa-home"></i>
-                            Your store
+                    {% for store in stores %}
+                      <li class="frontLink">
+                        <a href="{{ store.href }}" target="_blank">
+                          <i class="fa fa-home"></i>{{ store.name }}
                         </a>
-                    </li>
+                      </li>
+                    {%  endfor %}
                 ]]>
             </add>
         </operation>
