@@ -1,7 +1,7 @@
 <modification>
     <name>Frontlink</name>
     <code>frontlink</code>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <author>Michel Lima</author>
     <file path="admin/controller/common/column_left.php">
         <operation>
